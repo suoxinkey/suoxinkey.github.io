@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8" />
   <meta name="keywords" content="" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     addEventListener("load", function () {
       setTimeout(hideURLbar, 0);
@@ -13,6 +14,24 @@
 
     function hideURLbar() {
       window.scrollTo(0, 1);
+    }
+     function showMarkdown(){
+        var f=form;
+        var xmlhttp;
+        if (window.XMLHttpRequest){
+            xmlhttp=new XMLHttpRequest();
+        }
+        else{
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function(){
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                document.getElementById("content").innerHTML=marked(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET",f.q.value,true);
+        xmlhttp.send();
+        }
     }
   </script>
   <!-- Custom Theme files -->
@@ -144,7 +163,7 @@
               <br>
             </h4>
             <p>
-              [<a href="files/Blogs/Mocap/mosh.md">Mosh Blogs</a>]
+              [<a href="files/Blogs/Mocap/mosh.md" onclick=showMarkdown()>Mosh Blogs</a>]
             </p>
           </div>
           <!-- .Service-content ends here -->
